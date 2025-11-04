@@ -31,7 +31,7 @@ export const registerUser = async (req, res) => {
     }
     catch(error){
         console.log(error.message);
-        res.json({success:false, message: 'Fill all the Fields'})
+        res.json({success:false, message: error.message})
     }
 }
 
