@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {assets, menuLinks} from '../assets/assets'
-import {Link, useLocation, useNavigate} from 'react-router-dom'
+import {NavLink, Link, useLocation, useNavigate} from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 import {motion} from 'motion/react'
 
@@ -30,7 +30,7 @@ const Navbar = () => {
     <motion.div 
         initial={{ y: -25, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
         
         className={`flex items-center justify-between px-6 
         md:px-16 lg:px-24 xl:px-32 py-4 text-gray-600 border-b 
@@ -50,9 +50,10 @@ const Navbar = () => {
             ${open ? "max-sm:translate-x-0" : "max-sm:translate-x-full"} `
         }>
             {menuLinks.map((link,index)=>(
-                <Link key={index} to={link.path}>
+                <NavLink key={index} to={link.path}
+                        className={({ isActive }) => (isActive ? "text-blue-500 font-bold" : "text-gray-500 hover:text-blue-500")}>
                     {link.name}
-                </Link>
+                </NavLink>
             ))}
 
 
