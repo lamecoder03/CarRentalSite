@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAppContext } from '../context/AppContext';
 import toast from 'react-hot-toast';
+import {motion} from 'motion/react'
 
 const Login = () => {
 
@@ -35,12 +36,21 @@ const Login = () => {
     }
 
   return (
-    <div onClick={() => setShowLogin(false)} 
+    <div 
+        onClick={() => setShowLogin(false)} 
         className='fixed top-0 bottom-0 left-0 
         right-0 z-100 flex items-center text-sm 
         text-gray-600 bg-black/50'
     >
-       <form onSubmit={onSubmitHandler} onClick={(e) => e.stopPropagation()} className="flex flex-col gap-4 m-auto items-start p-8 py-12 w-80 sm:w-[352px] rounded-lg shadow-xl border border-gray-200 bg-white">
+       <motion.form 
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{
+            duration: 1.2,
+            delay: 0.2
+        }}
+        viewport={{ once: false, amount: 0.5 }}
+        onSubmit={onSubmitHandler} onClick={(e) => e.stopPropagation()} className="flex flex-col gap-4 m-auto items-start p-8 py-12 w-80 sm:w-[352px] rounded-lg shadow-xl border border-gray-200 bg-white">
             
             <p className="text-2xl font-medium m-auto">
                 <span className="text-primary">User</span>
@@ -105,7 +115,7 @@ const Login = () => {
                 {state === "register" ? "Create Account" : "Login"}
             </button>
 
-        </form>
+        </motion.form>
     </div>
   )
 }

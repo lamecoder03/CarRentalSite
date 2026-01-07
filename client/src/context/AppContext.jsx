@@ -61,6 +61,9 @@ export const AppProvider = ({ children })=>{
         axios.defaults.headers.common['Authorization'] = ``
         toast.success('You have been logged out successfully!')
 
+        navigate('/');
+        setShowLogin(true);
+
     }
 
     //useEffect to get token from localStorage

@@ -10,12 +10,14 @@ const Cars = () => {
 
   //getting search params from url
   const [searchParams] = useSearchParams()
+  const searchTerm = searchParams.get('search') || '';
+
   const pickupLocation = searchParams.get('pickupLocation')
   const pickupDate = searchParams.get('pickupDate')
   const returnDate = searchParams.get('returnDate')
 
   const {cars,axios} = useAppContext()
-  const [input,setInput] = useState('')
+  const [input,setInput] = useState(searchTerm)
 
   const isSearchData = pickupLocation && pickupDate && returnDate
   const [filteredCars, setFilteredCars] = useState([])
@@ -31,6 +33,8 @@ const Cars = () => {
       || car.model.toLowerCase().includes(input.toLocaleLowerCase())
       || car.category.toLowerCase().includes(input.toLocaleLowerCase())
       || car.transmission.toLowerCase().includes(input.toLocaleLowerCase())
+      || car.location.toLowerCase().includes(input.toLocaleLowerCase())
+      || car.pricePerDay.toString().toLowerCase().includes(input.toLocaleLowerCase())
     })
 
     setFilteredCars(filtered)
@@ -53,6 +57,10 @@ const Cars = () => {
   useEffect(()=>{
     isSearchData && searchCarAvailability()
   },[])
+
+  useEffect(() => {
+    setInput(searchTerm);
+  }, [searchTerm]);
 
   useEffect(()=>{
     cars.length > 0 && !isSearchData && applyFilter()

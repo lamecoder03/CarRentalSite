@@ -8,6 +8,14 @@ const Navbar = () => {
 
     const {setShowLogin, user, logout, isOwner, axios, setIsOwner} = useAppContext();
 
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSearch = () => {
+        if (!searchQuery.trim()) return;
+        navigate(`/cars?search=${encodeURIComponent(searchQuery)}`);
+        setSearchQuery('');
+    }
+
     const location = useLocation();
     const [ open , setOpen ] = useState(false);
     const navigate = useNavigate();
@@ -60,11 +68,20 @@ const Navbar = () => {
             <div className='hidden lg:flex items-center text-sm gap-2 border border-borderColor px-3 rounded-full max-w-56'>
                 <input
                     type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                     className='py-1.5 w-full bg-transparent outline-none placeholder-gray-500'
-                    placeholder="Search products"/>
-
-                <img src={assets.search_icon} alt="search" />
+                    placeholder="Search cars"
+                />
+                <img
+                    src={assets.search_icon}
+                    alt="search"
+                    className='cursor-pointer'
+                    onClick={handleSearch}
+                />
             </div>
+
 
             <div className='flex max-sm:flex-col items-start sm:items-center gap-6'>
                 

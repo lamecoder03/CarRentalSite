@@ -21,15 +21,28 @@ const Hero = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{
             duration: 0.8,
-            delay: 0.2
+            delay: 0.4
         }}
         className='h-screen flex flex-col items-center justify-center gap-14 bg-light text-center'>
 
-        <h1 className='text-4xl md:text-5xl font-semibold'>
+        <motion.h1 
+            initial={{ x: -200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+                duration: 0.6,
+                delay: 0.2
+            }}
+            className='text-4xl md:text-5xl font-semibold'>
             Luxury cars on Rent
-        </h1>
+        </motion.h1>
 
-        <form onSubmit={handleSearch}
+        <motion.form onSubmit={handleSearch}
+            initial={{ x: -200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+                duration: 0.6,
+                delay: 0.2
+            }}
             className='flex flex-col md:flex-row items-start
                 md:items-center justify-between p-6 rounded-lg 
                 md:rounded-full w-full max-w-80 md:max-w-200 bg-white 
@@ -83,9 +96,16 @@ const Hero = () => {
                     Search
             </button>
 
-        </form>
+        </motion.form>
 
-        <img src={assets.main_car} alt="car" className='max-h-74' />
+        <motion.img 
+            initial={{ x: 200, opacity: 0, zoom:0 }}
+            animate={{ x: 0, opacity: 1, zoom: 1 }}
+            transition={{
+                duration: 0.8,
+                delay: 0.2
+            }}
+            src={assets.main_car} alt="car" className='max-h-74' />
     
     </motion.div>
   )

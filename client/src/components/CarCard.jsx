@@ -1,6 +1,7 @@
 import React from 'react'
 import { assets } from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
+import {motion} from 'motion/react'
 
 const CarCard = ({car}) => {
 
@@ -22,8 +23,21 @@ const CarCard = ({car}) => {
             {car.isAvaliable && <p className='absolute top-4 left-4 bg-primary/90 text-white text-xs px-2.5 py-1 rounded-full'>Available Now</p>}
 
             <div className='absolute bottom-4 right-4 bg-black/80 backdrop-blur-sm text-white px-3 py-2 rounded-lg'>
-                <span className='font-semibold'>{currency}{car.pricePerDay}</span>
-                <span className='text-sm text-white/80'> / day</span>
+                <motion.span 
+                    initial={{ y: 50, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{
+                        duration: 1.2,
+                        delay: 0.2
+                    }}
+                    viewport={{ once: false, amount: 0.5 }}
+                    className='font-semibold'>
+                    {currency} {car.pricePerDay}
+                </motion.span>
+                <span 
+                    className='text-sm text-white/80'> 
+                    / day
+                </span>
             </div>
 
         </div>
