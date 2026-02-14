@@ -7,14 +7,33 @@ import bookingRouter from "./routes/bookingRoutes.js";
 
 const app = express();
 
+/* -------------------- CORS CONFIG -------------------- */
+
+const allowedOrigin = "https://car-rental-seven-kappa.vercel.app";
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", allowedOrigin);
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
+  next();
+});
+
 app.use(cors({
-  origin: "https://car-rental-seven-kappa.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: allowedOrigin,
   credentials: true
 }));
 
-app.options("*", cors());
+/* -------------------- MIDDLEWARE -------------------- */
+
 app.use(express.json());
+
+/* -------------------- ROUTES -------------------- */
 
 app.get("/", (req, res) => res.send("Server is Running"));
 
@@ -22,8 +41,9 @@ app.use("/api/user", userRouter);
 app.use("/api/owner", ownerRouter);
 app.use("/api/bookings", bookingRouter);
 
-// 🚀 Serverless handler for Vercel
+/* -------------------- SERVERLESS HANDLER -------------------- */
+
 export default async function handler(req, res) {
-  await connectDB();   // connect on request
+  await connectDB();
   return app(req, res);
 }
