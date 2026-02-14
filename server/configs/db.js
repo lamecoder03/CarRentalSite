@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 
 const connectDB = async () => {
-    try {
-        mongoose.connection.on('connected', () => console.log("Database Connected"));
-        await mongoose.connect(`${process.env.MONGODB_URI}/car-rental`);
-    } catch (error) {
-        console.log(error.message);
-    }
-}
+  try {
+    console.log("Mongo URI exists:", !!process.env.MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("Database Connected");
+  } catch (error) {
+    console.log("DB Error:", error);
+  }
+};
 
 export default connectDB;
