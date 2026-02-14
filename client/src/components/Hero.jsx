@@ -33,7 +33,7 @@ const Hero = () => {
                 delay: 0.2
             }}
             className='text-4xl md:text-5xl font-semibold'>
-            Luxury cars on rent
+            Luxury cars on Rent
         </motion.h1>
 
         <motion.form onSubmit={handleSearch}
