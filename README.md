@@ -28,7 +28,7 @@ Production deployment
 
 This project reflects real-world system design thinking, not just CRUD implementation.
 
-🏗️ Enterprise-Level System Architecture
+```🏗️ Enterprise-Level System Architecture
 🔷 High-Level Architecture Diagram
                         ┌───────────────────────────┐
                         │        Client (User)      │
@@ -53,7 +53,7 @@ This project reflects real-world system design thinking, not just CRUD implement
       │ MongoDB Atlas  │   │   ImageKit CDN │   │ Auth Middleware │
       │  Cloud DB      │   │ Optimized Img  │   │ JWT Validation  │
       └────────────────┘   └────────────────┘   └────────────────┘
-
+```
 🔷 Architectural Principles Used
 
 RESTful API Architecture (Representational State Transfer)
@@ -315,7 +315,7 @@ Input sanitization
 
 Server-side validation
 
-📂 Project Structure
+```📂 Project Structure
 CarRentalSite/
 │
 ├── client/
@@ -330,7 +330,7 @@ CarRentalSite/
 │   ├── middleware/
 │   ├── config/
 │   └── utils/
-
+```
 📈 Engineering Decisions & Tradeoffs
 Why MongoDB?
 
